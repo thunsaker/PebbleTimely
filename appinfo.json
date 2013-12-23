@@ -48,6 +48,26 @@
         "type": "png",
         "name": "IMAGE_HOURVIBE_ICON",
         "file": "images/hourvibe_20_20.png"
+      },
+      {
+        "type": "png",
+        "name": "WHITE_LINE_FULL",
+        "file": "images/white_line_tall.png"
+      },
+      {
+        "type": "png",
+        "name": "WHITE_LINE_LONG",
+        "file": "images/white_line_long.png"
+      },
+      {
+        "type": "png",
+        "name": "BLACK_LINE_LONG",
+        "file": "images/black_line_long.png"
+      },
+      {
+        "type": "png",
+        "name": "BLACK_LINE_FULL",
+        "file": "images/black_line_tall.png"
       }
     ]
   }
