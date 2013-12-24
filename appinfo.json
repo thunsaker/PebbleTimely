@@ -1,74 +1,76 @@
 {
-  "uuid": "55f7744b-f586-45b8-854c-554f34489f20",
-  "shortName": "Timely",
-  "longName": "Timely 2.0",
-  "companyName": "Martin Norland (@cynorg)",
-  "versionCode": 2,
-  "versionLabel": "2.0.0",
-  "watchapp": {
-    "watchface": true
-  },
-  "capabilities": [ "configurable" ],
-  "appKeys": {
-    "style_inv":     0,
-    "style_day_inv": 1,
-    "style_grid":    2,
-    "vibe_hour":     3,
-    "intl_dowo":     4,
-    "intl_fmt_date": 5,
-    "style_am_pm":   6,
-    "text_status":   7,
-    "text_month":    8,
-    "text_weekday":  9
-  },
-  "resources": {
-    "media": [
-      {
-        "menuIcon": true,
-        "type": "png",
-        "name": "IMAGE_MENU_ICON_DARK",
-        "file": "images/menu_icon_timely_dark.png"
-      },
-      {
-        "type": "png",
-        "name": "IMAGE_BT_NOLINK_ICON",
-        "file": "images/bluetooth_20_20.png"
-      },
-      {
-        "type": "png",
-        "name": "IMAGE_BT_LINKED_ICON",
-        "file": "images/bluetooth_thick_20_20.png"
-      },
-      {
-        "type": "png",
-        "name": "IMAGE_CHARGING_ICON",
-        "file": "images/charging_20_20.png"
-      },
-      {
-        "type": "png",
-        "name": "IMAGE_HOURVIBE_ICON",
-        "file": "images/hourvibe_20_20.png"
-      },
-      {
-        "type": "png",
-        "name": "WHITE_LINE_FULL",
-        "file": "images/white_line_tall.png"
-      },
-      {
-        "type": "png",
-        "name": "WHITE_LINE_LONG",
-        "file": "images/white_line_long.png"
-      },
-      {
-        "type": "png",
-        "name": "BLACK_LINE_LONG",
-        "file": "images/black_line_long.png"
-      },
-      {
-        "type": "png",
-        "name": "BLACK_LINE_FULL",
-        "file": "images/black_line_tall.png"
-      }
-    ]
-  }
+    "versionLabel": "2.1",
+    "uuid": "a84094aa-36f3-4f78-bce0-21d53c06d40a",
+    "appKeys": {
+        "intl_dowo": 4,
+        "style_day_inv": 1,
+        "style_grid": 2,
+        "vibe_hour": 3,
+        "style_am_pm": 6,
+        "text_status": 7,
+        "text_weekday": 9,
+        "text_month": 8,
+        "intl_fmt_date": 5,
+        "style_inv": 0
+    },
+    "longName": "Timely+ 2.1",
+    "versionCode": 3,
+    "capabilities": [
+        "configurable"
+    ],
+    "shortName": "Timely+",
+    "companyName": "Tommy Hunsaker (@thunsaker)",
+    "watchapp": {
+        "watchface": true
+    },
+    "resources": {
+        "media": [
+            {
+                "menuIcon": true,
+                "type": "png",
+                "name": "IMAGE_MENU_ICON_DARK",
+                "file": "images/menu_icon_timely_dark.png"
+            },
+            {
+                "type": "png",
+                "name": "BLACK_LINE_FULL",
+                "file": "images/black_line_tall.png"
+            },
+            {
+                "type": "png",
+                "name": "BLACK_LINE_LONG",
+                "file": "images/black_line_long.png"
+            },
+            {
+                "type": "png",
+                "name": "WHITE_LINE_LONG",
+                "file": "images/white_line_long.png"
+            },
+            {
+                "type": "png",
+                "name": "WHITE_LINE_FULL",
+                "file": "images/white_line_tall.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_HOURVIBE_ICON",
+                "file": "images/hourvibe_20_20.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_CHARGING_ICON",
+                "file": "images/charging_20_20.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BT_LINKED_ICON",
+                "file": "images/bluetooth_thick_20_20.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BT_NOLINK_ICON",
+                "file": "images/bluetooth_20_20.png"
+            }
+        ]
+    }
 }

@@ -1,4 +1,5 @@
 #include <pebble.h>
+#include "battbar.h"
 //#include <math.h>
 
 /*
@@ -27,17 +28,19 @@ static Layer *slot_bot;
 static BitmapLayer *bmp_connection_layer;
 static GBitmap *image_connection_icon;
 static GBitmap *image_noconnection_icon;
+static TextLayer *text_connection_layer; // TODO: temporary?
 static BitmapLayer *bmp_charging_layer;
 static GBitmap *image_charging_icon;
 static GBitmap *image_hourvibe_icon;
-static TextLayer *text_connection_layer; // TODO: temporary?
-static TextLayer *text_battery_layer;
+//static TextLayer *text_battery_layer;
 
 static InverterLayer *inverter_layer;
-static InverterLayer *battery_meter_layer;
+// static InverterLayer *battery_meter_layer;
 
 // battery info, instantiate to 'worst scenario' to prevent false hopes
+/*
 static uint8_t battery_meter = 4; // length of fill inside battery meter
+*/
 static bool battery_charging = false;
 static bool battery_plugged = false;
 
@@ -60,14 +63,16 @@ static bool battery_plugged = false;
 #define LAYOUT_SLOT_TOP      24 // 72 tall
 #define LAYOUT_SLOT_BOT      96 // 72 tall, 4px gap above
 #define LAYOUT_SLOT_HEIGHT   72
+/*
 #define STAT_BATT_LEFT      100 // LEFT + WIDTH + NIB_WIDTH <= 143
 #define STAT_BATT_TOP         4
 #define STAT_BATT_WIDTH      40 // should be divisible by 9, after subtracting 4 (2 pixels/side for the 'border')
 #define STAT_BATT_HEIGHT     15
 #define STAT_BATT_NIB_WIDTH   3 // >= 3
 #define STAT_BATT_NIB_HEIGHT  5 // >= 3
-#define STAT_BT_ICON_LEFT    -2 // 0
-#define STAT_BT_ICON_TOP      2 //  62 - left of time
+*/
+#define STAT_BT_ICON_LEFT   100 // 0
+#define STAT_BT_ICON_TOP      4 //  62 - left of time
 #define STAT_CHRG_ICON_LEFT  80 // 130 - right of time
 #define STAT_CHRG_ICON_TOP    2 //  62 - right of time
 
@@ -405,19 +410,29 @@ void battery_layer_update_callback(Layer *me, GContext* ctx) {
 //  }
   setColors(ctx);
 // battery outline
-  graphics_draw_rect(ctx, GRect(STAT_BATT_LEFT, STAT_BATT_TOP, STAT_BATT_WIDTH, STAT_BATT_HEIGHT));
+//  graphics_draw_rect(ctx, GRect(STAT_BATT_LEFT, STAT_BATT_TOP, STAT_BATT_WIDTH, STAT_BATT_HEIGHT));
 // battery 'nib' terminal
-  graphics_draw_rect(ctx, GRect(STAT_BATT_LEFT + STAT_BATT_WIDTH - 1,
+/*  graphics_draw_rect(ctx, GRect(STAT_BATT_LEFT + STAT_BATT_WIDTH - 1,
                                 STAT_BATT_TOP + (STAT_BATT_HEIGHT - STAT_BATT_NIB_HEIGHT)/2,
                                 STAT_BATT_NIB_WIDTH,
                                 STAT_BATT_NIB_HEIGHT));
+*/
 // fill it in with current power
 //  setInvColors(ctx);
 //  graphics_fill_rect(ctx, GRect(72+22+2, 6, battery_meter-4, 11), 0, GCornerNone);
 }
 
 static void handle_battery(BatteryChargeState charge_state) {
-  static char battery_text[] = "100 ";
+    /* Change these options to your liking */
+    BBOptions options; /* Step 5 */
+    options.position = BATTBAR_POSITION_TOP;
+    options.direction = BATTBAR_DIRECTION_DOWN;
+    options.color = BATTBAR_COLOR_WHITE;
+    options.isWatchApp = false;
+  	Layer *window_layer = window_get_root_layer(window);
+    DrawBattBar(options, window_layer); /* Step 6 */
+	/*
+	static char battery_text[] = "100 ";
 
   battery_meter = charge_state.charge_percent/10*(STAT_BATT_WIDTH-4)/9;
   battery_charging = charge_state.is_charging;
@@ -450,6 +465,7 @@ static void handle_battery(BatteryChargeState charge_state) {
   }
   text_layer_set_text(text_battery_layer, battery_text);
   layer_mark_dirty(battery_layer);
+  */
 }
 
 static void handle_bluetooth(bool connected) {
@@ -497,11 +513,11 @@ static void window_load(Window *window) {
   } else {
     layer_set_hidden(bitmap_layer_get_layer(bmp_charging_layer), true);
   }
-
+/*
   battery_layer = layer_create(stat_bounds);
   layer_set_update_proc(battery_layer, battery_layer_update_callback);
   layer_add_child(statusbar, battery_layer);
-
+*/
   datetime_layer = layer_create(slot_top_bounds);
   layer_set_update_proc(datetime_layer, datetime_layer_update_callback);
   layer_add_child(slot_top, datetime_layer);
@@ -532,7 +548,7 @@ static void window_load(Window *window) {
   text_layer_set_text_alignment(text_connection_layer, GTextAlignmentLeft);
   text_layer_set_text(text_connection_layer, "NO LINK");
   layer_add_child(statusbar, text_layer_get_layer(text_connection_layer));
-
+/*
   text_battery_layer = text_layer_create( GRect(STAT_BATT_LEFT, STAT_BATT_TOP-2, STAT_BATT_WIDTH, STAT_BATT_HEIGHT) );
   text_layer_set_text_color(text_battery_layer, GColorWhite);
   text_layer_set_background_color(text_battery_layer, GColorClear);
@@ -541,14 +557,16 @@ static void window_load(Window *window) {
   text_layer_set_text(text_battery_layer, "?");
 
   layer_add_child(statusbar, text_layer_get_layer(text_battery_layer));
+*/
 
   // NOTE: No more adding layers below here - the inverter layers NEED to be the last to be on top!
 
   // hide battery meter, until we can fix the size/position later when subscribing
+/*
   battery_meter_layer = inverter_layer_create(stat_bounds);
   layer_set_hidden(inverter_layer_get_layer(battery_meter_layer), true);
   layer_add_child(statusbar, inverter_layer_get_layer(battery_meter_layer));
-
+*/
   // topmost inverter layer, determines dark or light...
   inverter_layer = inverter_layer_create(bounds);
   if (settings.inverted==0) {
@@ -561,14 +579,14 @@ static void window_load(Window *window) {
 static void window_unload(Window *window) {
   // unload anything we loaded, destroy anything we created, remove anything we added
   layer_destroy(inverter_layer_get_layer(inverter_layer));
-  layer_destroy(inverter_layer_get_layer(battery_meter_layer));
-  layer_destroy(text_layer_get_layer(text_battery_layer));
+//  layer_destroy(inverter_layer_get_layer(battery_meter_layer));
+//  layer_destroy(text_layer_get_layer(text_battery_layer));
   layer_destroy(text_layer_get_layer(text_connection_layer)); // TODO: temporary?
   layer_destroy(text_layer_get_layer(time_layer));
   layer_destroy(text_layer_get_layer(date_layer));
   layer_destroy(calendar_layer);
   layer_destroy(datetime_layer);
-  layer_destroy(battery_layer);
+//  layer_destroy(battery_layer);
   layer_remove_from_parent(bitmap_layer_get_layer(bmp_charging_layer));
   layer_remove_from_parent(bitmap_layer_get_layer(bmp_connection_layer));
   bitmap_layer_destroy(bmp_charging_layer);
