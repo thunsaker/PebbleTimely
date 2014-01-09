@@ -16,7 +16,7 @@
     "longName": "Timely+ 2.1",
     "versionCode": 3,
     "capabilities": [
-        "configurable"
+        ""
     ],
     "shortName": "Timely+",
     "companyName": "Tommy Hunsaker (@thunsaker)",
@@ -25,6 +25,16 @@
     },
     "resources": {
         "media": [
+            {
+                "type": "png",
+                "name": "CHARGING_LINE_LONG",
+                "file": "images/charging_long.png"
+            },
+            {
+                "type": "png",
+                "name": "CHARGING_LINE_FULL",
+                "file": "images/charging_tall.png"
+            },
             {
                 "menuIcon": true,
                 "type": "png",
@@ -50,26 +60,6 @@
                 "type": "png",
                 "name": "WHITE_LINE_FULL",
                 "file": "images/white_line_tall.png"
-            },
-            {
-                "type": "png",
-                "name": "IMAGE_HOURVIBE_ICON",
-                "file": "images/hourvibe_20_20.png"
-            },
-            {
-                "type": "png",
-                "name": "IMAGE_CHARGING_ICON",
-                "file": "images/charging_20_20.png"
-            },
-            {
-                "type": "png",
-                "name": "IMAGE_BT_LINKED_ICON",
-                "file": "images/bluetooth_thick_20_20.png"
-            },
-            {
-                "type": "png",
-                "name": "IMAGE_BT_NOLINK_ICON",
-                "file": "images/bluetooth_20_20.png"
             }
         ]
     }

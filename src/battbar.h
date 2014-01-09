@@ -28,4 +28,7 @@ typedef struct {
 	bool isWatchApp; // Determines height based on the presence of a time title bar
 } BBOptions;
 
-void DrawBattBar(BBOptions options, Layer *current_window);
+void SetupBattBar(BBOptions options, Layer *current_window);
+void DrawBattBar();
+void RefreshBattBar(BatteryChargeState charge_state);
+void battbar_handler_battery(BatteryChargeState charge_state);
