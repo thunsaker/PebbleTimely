@@ -1,5 +1,5 @@
 {
-    "versionLabel": "2.1",
+    "versionLabel": "2.2",
     "uuid": "a84094aa-36f3-4f78-bce0-21d53c06d40a",
     "appKeys": {
         "intl_dowo": 4,
@@ -13,8 +13,8 @@
         "intl_fmt_date": 5,
         "style_inv": 0
     },
-    "longName": "Timely+ 2.1",
-    "versionCode": 3,
+    "longName": "Timely+ 2.2",
+    "versionCode": 4,
     "capabilities": [
         ""
     ],
